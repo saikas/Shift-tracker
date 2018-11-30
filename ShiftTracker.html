@@ -1,0 +1,99 @@
+<!--
+	Author: Alexander S.
+	This page is used to export work shifts to a CSV file.
+-->
+
+<!-- TODO:
+[ ]	hide all content when 'Table' is pressed, and replace with table
+[ ]	Add back button to hide table and show shift generator
+[ ]	Add CSV parser
+ -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Shift Tracker</title>
+
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+		<script src="js/backColour.js"></script>
+
+		<script src="js/tracker.js"></script>
+		<script src="js/triggers.js"></script>
+		<script src="js/csvParser.js"></script>
+
+		<script src="js/math.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+	</head>
+
+	<body onload="init();">
+
+		<h1 class="title">Shift Tracker</h1>
+		<h4 onclick="location.href = 'ShiftTable.html?name='+filename";>Table</h4>
+
+		<table>
+			<tr>
+				<td colspan="3">
+					<h2 class="title input">File Import</h1>
+					<div id="importContainer">
+						<input class="button" id="fileImp" name="file" type="file">
+						<button class="button" id="previewBtn" onclick="printFileContent();">Preview</button>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="3">
+					<h2 class="title" id="dateTitle">Date</h2>
+					
+					<div id="radioBtnContainer">
+						<input type="radio" class="radioDate" id="currDate" name="dateType" onclick="toggleElement('shiftDate', this); toggleDateType(this);" checked>
+							<label for="currDate" class="title" id="dateTitle1">Today</label>
+						</input>
+						
+						<input type="radio" class="radioDate" id="custDate" name="dateType" onclick="toggleElement('shiftDate', this); toggleDateType(this);">
+							<label for="custDate" class="title" id="dateTitle2">Custom</label>
+						</input>
+					</div>
+					
+					<input id="shiftDate" name="when" type="date" min="1970-01-01" max="2038-01-19">
+				</td>
+			</tr>
+				
+			<tr>
+				<td>
+					<h2 class="title input">Punch In</h1>
+					<select class="dropdown" id="startTimeDropDown"></select>
+				</td>
+			
+				<td>
+					<h2 class="title input">Punch Out</h1>
+					<select class="dropdown" id="endTimeDropDown"></select>
+				</td>
+			
+				<td>
+					<h2 rowspan="2" class="title input">Pay Rate</h1>
+					<select class="dropdown" id="pay"></select>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="3">
+					<button class="button" id="addBtn" onclick="addShift();">Add Shift</button>
+					<button class="button" id="undoBtn" onclick="removeShift();">Remove Shift</button>
+					<button class="button" id="redoBtn" onclick="redoShift();">Recover Shift</button>
+					<button class="button" id="updateBtn" onclick="update();">Update</button>
+				</td>
+			</tr>
+
+			<tr>
+				<td id="export-td" colspan="4">
+					<h2 class="title input" id="expTitle">Export File</h2>
+					<button class="button" id="exportBtn" onclick="finalize(); downloadCSV();">Download</button>
+				</td>
+			</tr>
+		</table>
+
+		<h5>Last modified Nov 28, 2018</h5>
+	</body>
+</html>

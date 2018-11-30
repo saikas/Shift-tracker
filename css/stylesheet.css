@@ -1,0 +1,81 @@
+/*
+	Author: Alexander S.
+*/
+
+.title {
+	font-size: 35px;
+	font-family: Helvetica;
+	color: rgb(50,70,230);
+	-webkit-text-stroke: 1px black;
+}
+	label.title {
+		font-family: Helvetica;
+		font-size: 20px;
+	}
+
+	h2.title {
+		position: relative;
+		font-size: 25px;
+	}
+
+	h1 + h2.title {
+		font-size: 25px;
+		padding-left: 50px;
+	}
+
+	table + h2.title {
+		font-size: 25px;
+		padding-left: 50px;
+	}
+
+.button {
+	font-family: Helvetica;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+table {
+	width: 600px;
+	height: 100px;
+
+	border: 3px black dashed;
+	border-radius: 25px;
+	text-align: center;
+}
+	table td {
+		width: 3%;
+		padding: 10px;
+	}
+
+	select {
+		font-size: 20px;
+		width: 80px;
+	}
+		select option {
+			font-size: 20px;
+		}
+
+#importContainer {
+	display: inline;
+}
+
+#radioBtnContainer {
+	display: inline;
+}
+
+#fileImp {
+	width: 230px;
+}
+
+#exportBtn {
+	border-left: 50%;
+}
+
+input#shiftDate {
+	font-size: 15px;
+}
+
+.hidden {
+	position: absolute !important;
+}
