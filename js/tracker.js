@@ -20,6 +20,15 @@ var intervalsPerHour = 60;
 var payMin = 15.0;
 var payRange = 10.0;
 
+function initTable() {
+
+	if(fileContent === "") {
+		//assuming this was called on the ShiftTable page where the fileContent str is empty
+		fileContent = localStorage.getItem("csvData");
+		// document.write("<h2>"+ fileContent +"</h2>");
+		writeToElement("csvTable", genDataTableHTML(fileContent));
+	}
+}
 
 function init() {
 
@@ -84,6 +93,14 @@ function genPay(el, minPay, range) {
 	}
 }
 
+function openTablePage() {
+	if(!(fileContent==="") ) {
+		localStorage.setItem("csvData", fileContent.split("\n").join("<br />"));
+		var w = window.open('./ShiftTable.html','_blank','',true);
+		w.focus();
+	}
+}
+
 function genData() {
 	var data = [];
 	var e;
@@ -93,7 +110,7 @@ function genData() {
 
 	if(defaultDate) {
 		var d = new Date();
-		data.Date = ""+ d.getFullYear() +"-"+ (d.getMonth()+1) +"-"+ d.getDate();
+		data.Date = ""+ d.getFullYear() +"-"+ pad(d.getMonth()+1) +"-"+ pad(d.getDate());
 	}
 	else {
 		e = document.getElementById("shiftDate");
@@ -121,6 +138,13 @@ function genData() {
 	data.Rate = e.options[e.selectedIndex].value;
 	
 	totalTime = parseFloat(End_Float - Start_Float);
+
+	//reduce 1 hour of total time if took break
+	var breakBox = document.getElementById("breakBox");
+	if(breakBox.checked) {
+		totalTime--;
+	}
+
 	hours = Math.floor(totalTime);	
 	mins = Math.round( ((totalTime - hours)*60) );
 	if(mins == 60) {

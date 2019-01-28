@@ -4,9 +4,8 @@
 -->
 
 <!-- TODO:
-[ ]	hide all content when 'Table' is pressed, and replace with table
 [ ]	Add back button to hide table and show shift generator
-[ ]	Add CSV parser
+[x]	Add CSV parser
  -->
 
 <!DOCTYPE html>
@@ -29,7 +28,7 @@
 	<body onload="init();">
 
 		<h1 class="title">Shift Tracker</h1>
-		<h4 onclick="location.href = 'ShiftTable.html?name='+filename";>Table</h4>
+		<!-- <h4 onclick="openTablePage();">Table</h4> -->
 
 		<table>
 			<tr>
@@ -37,7 +36,8 @@
 					<h2 class="title input">File Import</h1>
 					<div id="importContainer">
 						<input class="button" id="fileImp" name="file" type="file">
-						<button class="button" id="previewBtn" onclick="printFileContent();">Preview</button>
+						<button class="button" id="previewBtn" onclick="openTablePage();">Preview</button>
+						<!-- <button class="button" id="previewBtn" onclick="printFileContent();">Preview</button> -->
 					</div>
 				</td>
 			</tr>
@@ -55,8 +55,11 @@
 							<label for="custDate" class="title" id="dateTitle2">Custom</label>
 						</input>
 					</div>
-					
 					<input id="shiftDate" name="when" type="date" min="1970-01-01" max="2038-01-19">
+					
+					<input id="breakBox" type="checkbox">
+						<label for="breakBox" class="title" id="breakTitle">Break</label>
+					</input>
 				</td>
 			</tr>
 				
@@ -94,6 +97,6 @@
 			</tr>
 		</table>
 
-		<h5>Last modified Nov 28, 2018</h5>
+		<h5>Last modified Jan 22, 2019</h5>
 	</body>
 </html>
